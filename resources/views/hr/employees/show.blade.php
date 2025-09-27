@@ -1,3 +1,8 @@
+{{-- PATH DIRECTORY --}}
+<!-- resources/views/employees/show.blade.php -->
+<!-- Not yet done for js-->
+<!-- Not yet done for CSS -->
+
 @extends('layouts.hr')
 
 {{-- Fixed header title --}}
@@ -43,3 +48,14 @@
 
 </div>
 @endsection
+
+
+@push('styles')
+<link rel="stylesheet" href="">
+@endpush
+@push('scripts')
+<script src="{{ asset('') }}"></script>
+@endpush
+
+
+{{-- DONE CHECKING --}}

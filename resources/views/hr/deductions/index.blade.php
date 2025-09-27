@@ -1,3 +1,8 @@
+{{-- PATH DIRECTORY --}}
+<!-- resources/views/hr/deductions/index.blade.php -->
+<!-- public/js/hr-deductions.js-->
+<!-- Not yet done for CSS -->
+
 @extends('layouts.hr')
 
 @section('page-title', 'Deduction Types')
@@ -28,8 +33,8 @@
         <tr data-bs-toggle="modal" data-bs-target="#sssModal" style="cursor:pointer;">
             <td>SSS Contribution</td>
             <td>
-                {{ $sssBrackets && count($sssBrackets) > 0 
-                    ? $sssBrackets->last()->updated_at->format('M. d, Y h:i A') 
+                {{ $sssBrackets && count($sssBrackets) > 0
+                    ? $sssBrackets->last()->updated_at->format('M. d, Y h:i A')
                     : 'Not yet set' }}
             </td>
         </tr>
@@ -62,8 +67,8 @@
         <tr data-bs-toggle="modal" data-bs-target="#taxModal" style="cursor:pointer;">
             <td>Income Tax</td>
             <td>
-                {{ $taxBrackets && count($taxBrackets) > 0 
-                    ? $taxBrackets->last()->updated_at->format('M. d, Y h:i A') 
+                {{ $taxBrackets && count($taxBrackets) > 0
+                    ? $taxBrackets->last()->updated_at->format('M. d, Y h:i A')
                     : 'Not yet set' }}
             </td>
         </tr>
@@ -135,7 +140,7 @@
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" id="editButton">Edit</button>
                     </div>
-                    
+
                     <!-- EDIT MODE BUTTONS -->
                     <div id="editModeButtons">
                         <button type="button" class="btn btn-outline-secondary" id="cancelEditButton">Cancel</button>
@@ -158,8 +163,8 @@
 
             <div class="modal-body">
                 <p>
-                Loans and Advances are employee-specific deductions. 
-                Each loan or advance is linked to an individual employee and tracked through employee deductions, 
+                Loans and Advances are employee-specific deductions.
+                Each loan or advance is linked to an individual employee and tracked through employee deductions,
                 including the amount, date, and payment schedule.
                 </p>
             </div>
@@ -405,8 +410,8 @@
             </div>
 
             <div class="modal-body">
-                <p>SSS Loan is a fixed government loan deduction linked to an individual employee. 
-                    The system tracks the loan amount and the payment schedule, 
+                <p>SSS Loan is a fixed government loan deduction linked to an individual employee.
+                    The system tracks the loan amount and the payment schedule,
                     and the monthly deduction is automatically applied to the employee’s payslip.
                 </p>
             </div>
@@ -428,8 +433,8 @@
             </div>
 
             <div class="modal-body">
-                <p>HDMF or Pag-IBIG Loan is a fixed government loan deduction linked to an individual employee. 
-                    The system tracks the loan amount and the payment schedule, 
+                <p>HDMF or Pag-IBIG Loan is a fixed government loan deduction linked to an individual employee.
+                    The system tracks the loan amount and the payment schedule,
                     and the monthly deduction is automatically applied to the employee’s payslip.
                 </p>
             </div>
@@ -491,7 +496,18 @@
     </div>
 </div>
 
-
 <script>window.csrfToken = '{{ csrf_token() }}';</script>
-<script src="{{ asset('js/deductions.js') }}"></script>
 @endsection
+
+
+@push('styles')
+<link rel="stylesheet" href="">
+@endpush
+@push('scripts')
+<script src="{{ asset('js/hr-deductions.js') }}"></script>
+@endpush
+
+
+
+
+{{-- DONE CHECKING --}}

@@ -1,3 +1,9 @@
+{{-- PATH DIRECTORY --}}
+<!-- resources/views/hr/employees/index.blade.php -->
+<!-- public/js/js/hr-schedule.js -->
+<!-- Not yet done for CSS -->
+
+
 @extends('layouts.hr')
 
 @section('page-title', 'Cutoff Schedule')
@@ -120,7 +126,7 @@
                         <select name="regular_start" class="form-select form-select-sm">
                             <option value="">--</option>
                             @foreach($timeOptions as $time)
-                                <option value="{{ $time }}" 
+                                <option value="{{ $time }}"
                                     {{ (old('regular_start') ?? ($settings->regular_start ?? '')) == $time ? 'selected' : '' }}>
                                     {{ $time }}
                                 </option>
@@ -134,7 +140,7 @@
                         <select name="regular_end" class="form-select form-select-sm">
                             <option value="">--</option>
                             @foreach($timeOptions as $time)
-                                <option value="{{ $time }}" 
+                                <option value="{{ $time }}"
                                     {{ (old('regular_end') ?? ($settings->regular_end ?? '')) == $time ? 'selected' : '' }}>
                                     {{ $time }}
                                 </option>
@@ -148,7 +154,7 @@
                         <select name="night_start" class="form-select form-select-sm">
                             <option value="">--</option>
                             @foreach($timeOptions as $time)
-                                <option value="{{ $time }}" 
+                                <option value="{{ $time }}"
                                     {{ (old('night_start') ?? ($settings->night_start ?? '')) == $time ? 'selected' : '' }}>
                                     {{ $time }}
                                 </option>
@@ -162,7 +168,7 @@
                         <select name="night_end" class="form-select form-select-sm">
                             <option value="">--</option>
                             @foreach($timeOptions as $time)
-                                <option value="{{ $time }}" 
+                                <option value="{{ $time }}"
                                     {{ (old('night_end') ?? ($settings->night_end ?? '')) == $time ? 'selected' : '' }}>
                                     {{ $time }}
                                 </option>
@@ -174,7 +180,7 @@
                     <div class="d-flex gap-2 mt-3">
                         <button type="submit" class="btn btn-primary btn-sm px-3">Save</button>
                         @if(!$isNew)
-                        <button type="button" class="btn btn-secondary btn-sm px-3" 
+                        <button type="button" class="btn btn-secondary btn-sm px-3"
                             onclick="window.location.href='{{ route('schedule.index', ['year' => $year, 'month' => $month]) }}'">
                             Cancel
                         </button>
@@ -182,10 +188,10 @@
                     </div>
                 @else
                     {{-- View Mode --}}
-                    <div class="mb-2 small" 
-                        data-fs="{{ $settings->first_half_start }}" 
-                        data-fe="{{ $settings->first_half_end }}" 
-                        data-ss="{{ $settings->second_half_start }}" 
+                    <div class="mb-2 small"
+                        data-fs="{{ $settings->first_half_start }}"
+                        data-fe="{{ $settings->first_half_end }}"
+                        data-ss="{{ $settings->second_half_start }}"
                         data-se="{{ $settings->second_half_end }}">
                         <strong>Cutoff:</strong><br>
                         1st: {{ $settings->first_half_start }} - {{ $settings->first_half_end }}<br>
@@ -200,100 +206,15 @@
         </div>
     </form>
 </div>
-
-{{-- Calendar Highlight Script --}}
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const updateHighlight = (fs, fe, ss, se) => {
-        document.querySelectorAll('#calendar-table td[data-day]').forEach(td => {
-            const day = parseInt(td.dataset.day);
-            td.style.backgroundColor = '';
-            td.style.color = '';
-
-            if (fs && fe && day >= fs && day <= fe) {
-                td.style.backgroundColor = '#1e3a8a';
-                td.style.color = 'white';
-            }
-            if (ss && se && day >= ss && day <= se) {
-                td.style.backgroundColor = '#3b82f6';
-                td.style.color = 'white';
-            }
-        });
-    };
-
-    // Edit Mode
-    if (document.getElementById('first_half_start')) {
-        const getVal = id => {
-            const el = document.getElementById(id);
-            if (!el) return null;
-            const val = el.value;
-            return val === 'end' ? 31 : (parseInt(val) || null);
-        };
-
-        ['first_half_start','first_half_end','second_half_start','second_half_end'].forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.addEventListener('change', () => {
-                updateHighlight(getVal('first_half_start'), getVal('first_half_end'), getVal('second_half_start'), getVal('second_half_end'));
-            });
-        });
-
-        updateHighlight(getVal('first_half_start'), getVal('first_half_end'), getVal('second_half_start'), getVal('second_half_end'));
-    } 
-    // View Mode
-    else {
-        const viewBox = document.querySelector('[data-fs]');
-        if (viewBox) {
-            const fs = parseInt(viewBox.dataset.fs) || null;
-            const fe = viewBox.dataset.fe === 'end' ? 31 : (parseInt(viewBox.dataset.fe) || null);
-            const ss = parseInt(viewBox.dataset.ss) || null;
-            const se = viewBox.dataset.se === 'end' ? 31 : (parseInt(viewBox.dataset.se) || null);
-            updateHighlight(fs, fe, ss, se);
-        }
-    }
-
-    // Calendar highlight – huwag alisin kahit view mode
-    function renderCalendar(selectedDates, viewMode = false) {
-        // ... existing render logic ...
-        selectedDates.forEach(date => {
-            const cell = document.querySelector(`[data-date="${date}"]`);
-            if (cell) {
-                cell.classList.add('highlight');
-            }
-        });
-    }
-
-    let editMode = false;
-    let originalValues = {};
-
-    function enableEditMode() {
-        editMode = true;
-
-        // Save original values
-        document.querySelectorAll('[data-field]').forEach(input => {
-            originalValues[input.name] = input.value;
-            input.removeAttribute('readonly');
-        });
-
-        document.getElementById('editBtn').style.display = 'none';
-        document.getElementById('saveBtn').style.display = 'inline-block';
-        document.getElementById('cancelBtn').style.display = 'inline-block';
-    }
-
-    function cancelEditMode() {
-        editMode = false;
-
-        // Restore original values
-        document.querySelectorAll('[data-field]').forEach(input => {
-            input.value = originalValues[input.name];
-            input.setAttribute('readonly', true);
-        });
-
-        document.getElementById('editBtn').style.display = 'inline-block';
-        document.getElementById('saveBtn').style.display = 'none';
-        document.getElementById('cancelBtn').style.display = 'none';
-    }
-    
-});
-</script>
-
 @endsection
+
+
+@push('styles')
+<link rel="stylesheet" href="">
+@endpush
+@push('scripts')
+<script src="{{ asset('js/hr-schedule.js') }}"></script>
+@endpush
+
+
+{{-- DONE CHECKING --}}

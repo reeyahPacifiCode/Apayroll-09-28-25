@@ -1,23 +1,31 @@
+{{-- PATH DIRECTORY --}}
+<!-- resources/views/layouts.blade.php -->
+<!-- public/js/app.js-->
+<!-- public/css/fixed-nav.css -->
+<!-- public/css/hr-dashboard.css -->
+<!-- public/css/employees-partials.css -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
     <title>HR Dashboard</title>
-    
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- FullCalendar CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css" rel="stylesheet">
-    
-    <link rel="stylesheet" href="{{ asset('css/fixed-nav.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/content.css') }}">
-    
-    <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- External libraries CSS -->
+    <link href="{{ asset('css/vendors/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/vendors/bootstrap-icons.min.css') }}" rel="stylesheet">
+     <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/fixed-nav.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/hr.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/hr-dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/employees-partials.css') }}">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
+    @stack('styles')
 </head>
+
 <body class="d-flex flex-column" style="height: 100vh; margin: 0;">
     <!-- Logo Header -->
     <div class="background-wrapper" style="height: 60px;">
@@ -38,7 +46,7 @@
         <div class="top-right d-flex align-items-center gap-3">
             <span class="bell-icon">🔔</span>
 
-            <!-- User Dropdown -->
+    <!-- User Dropdown -->
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle d-flex align-items-center gap-2" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="background: none; border: none; color: inherit;">
                     <span class="user-icon">👤</span>
@@ -53,15 +61,15 @@
 
 <!-- Sidebar + Main Content -->
 <div class="layout-container">
-    <div id="sidebar" class="sidebar">
-        @php
-            $currentRoute = Route::currentRouteName();
-            $pageTitle = match($currentRoute) {
-                'dashboard' => 'Dashboard',
-                'employee' => 'Employee',
-                default => 'HR Portal'
-            };
-        @endphp
+<div id="sidebar" class="sidebar">
+    @php
+        $currentRoute = Route::currentRouteName();
+        $pageTitle = match($currentRoute) {
+            'dashboard' => 'Dashboard',
+            'employee' => 'Employee',
+            default => 'HR Portal'
+        };
+    @endphp
 
         <div class="sidebar-header">
             <h4>{{ $pageTitle }}</h4>
@@ -87,7 +95,7 @@
                         <span>Schedule</span>
                     </a>
                 </li>
-                
+
                 <li class="{{ $currentRoute == 'deductions.index' ? 'active' : '' }}">
                     <a href="{{ route('deductions.index') }}">
                         <i data-lucide="percent"></i><span>Deduction</span>
@@ -102,7 +110,7 @@
 
                 <li><a href="#"><i data-lucide="file-text"></i><span>Payroll</span></a></li>
                 <li><a href="#"><i data-lucide="wallet"></i><span>Pay Slip</span></a></li>
-                
+
                 <li class="{{ $currentRoute == 'calendar.index' ? 'active' : '' }}">
                     <a href="{{ route('calendar.index') }}">
                         <i data-lucide="calendar"></i><span>Calendar</span>
@@ -112,7 +120,7 @@
                 <li><a href="#"><i data-lucide="file-warning"></i><span>Report</span></a></li>
                 <li><a href="#"><i data-lucide="archive"></i><span>Archive</span></a></li>
             </ul>
-            
+
         </div>
 
         <div class="main-content">
@@ -128,42 +136,23 @@
     </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="text-white text-center mt-auto" style="background-color: #032260; height: 20px; font-size: 9px; line-height: 20px;">
-        <p>RW RealWorks • CvSU–Silang Campus • &copy; 2025</p>
+     <!-- Footer-->
+    <div class="footer">
+        RW RealWorks • CvSU–Silang Campus • &nbsp;<i class="bi bi-c-circle"></i>&nbsp;2025
     </div>
 
-    <script>
-        const sidebar = document.querySelector('.sidebar');
-        const toggleIcon = document.getElementById('sidebarToggle');
 
-        toggleIcon.addEventListener('click', () => {
-            sidebar.classList.toggle('collapsed');
-
-            // Toggle icon symbol
-            if (sidebar.classList.contains('collapsed')) {
-                toggleIcon.textContent = '☰';
-            } else {
-                toggleIcon.textContent = '☰';
-            }
-        });
-    </script>
-
-    <script>
-        lucide.createIcons();
-
-        document.getElementById('department').addEventListener('change', function () {
-            this.form.submit();
-        });
-    </script>
-    
-
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Calendar -->
+<script src="{{ asset('js/vendors/fullcalendar.min.js') }}"></script>
+<!-- Bootstrap JS -->
+<script src="{{ asset('js/vendors/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 
 
     @stack('scripts')
-
 </body>
 </html>
+
+
+{{-- DONE CHECKING/ NAIDAGDAG @stack('styles') / content.css as new is hr-dashboard.css /
+ALL ONLINE EXTERNAL LIBRARIES CHANGE TO OFFLINE. CSS, JS, AND CALENDAR--}}

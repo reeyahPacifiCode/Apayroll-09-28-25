@@ -1,4 +1,8 @@
-<!-- resources/views/employees/schedule.blade.php -->
+{{-- PATH DIRECTORY --}}
+<!-- resources/views/employees/partials/schedule.blade.php -->
+<!-- public/js/employee-partials-schedule.js-->
+<!-- public/css/employee-partials-schedule.css -->
+
 <div class="tab-pane fade" id="schedule" role="tabpanel">
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
@@ -68,10 +72,10 @@
                         <p><strong>Schedule:</strong> <span id="view-schedule"></span></p>
                         <p><strong>Time In:</strong> <span id="view-time-in"></span></p>
                         <p><strong>Time Out:</strong> <span id="view-time-out"></span></p>
-                        
+
                         <!-- Legend -->
                         <div id="view-legend" class="mt-3">
-                            <span class="badge bg-primary">Working Day (Blue)</span> 
+                            <span class="badge bg-primary">Working Day (Blue)</span>
                             <span class="badge bg-danger">Rest Day (Red)</span>
                         </div>
                     </div>
@@ -146,12 +150,14 @@
     </div>
 </div>
 
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/employees-partials-schedule.css') }}">
+@endpush
+
 @push('scripts')
 <!-- FullCalendar -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.9/index.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.9/index.global.min.js"></script>
-<link href="{{ asset('css/employee-schedule.css') }}" rel="stylesheet">
-<script src="{{ asset('js/employee-schedule.js') }}"></script>
+<script src="{{ asset('js/vendors/fullcalendar.min.js') }}"></script>
+<script src="{{ asset('js/employees-partials-schedule.js') }}"></script>
 <script>
     // Pass PHP data to JavaScript
     window.employeeData = {
@@ -163,3 +169,7 @@
     };
 </script>
 @endpush
+
+
+{{-- DONE  CHECKING --}}
+

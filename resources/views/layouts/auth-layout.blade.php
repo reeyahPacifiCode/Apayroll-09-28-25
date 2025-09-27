@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title', 'Technopark Hotel Auth')</title>
-    <!-- Blade Layout (e.g., app.blade.php or login.blade.php) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Your CSS must come AFTER Bootstrap -->
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <!-- Blade Layout (e.g., app.blade.php or login.blade.php) | External libraries CSS-->
+    <link href="{{ asset('css/vendors/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/vendors/bootstrap-icons.min.css') }}" rel="stylesheet">
+    <!-- Your CSS must come AFTER Bootstrap | Custom CSS -->
+    <link href="{{ asset('css/auth-layout.css') }}" rel="stylesheet">
 
     @stack('styles')
 </head>
 <body>
-
     <!-- Fixed Logo Area -->
     <div class="logo-wrapper">
         <div class="left-logo">
@@ -32,9 +32,12 @@
 
     <!-- Footer -->
     <div class="footer">
-        RW RealWorks • CvSU–Silang Campus • © 2025
+        RW RealWorks • CvSU–Silang Campus • <i class="bi bi-c-circle"></i> 2025
     </div>
 
     @stack('scripts')
 </body>
 </html>
+
+
+{{-- DONE CHECKING. --}}

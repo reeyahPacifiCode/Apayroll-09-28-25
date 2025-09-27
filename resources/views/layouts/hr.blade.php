@@ -1,4 +1,8 @@
-{{-- resources/views/layouts/hr.blade.php --}}
+{{-- PATH DIRECTORY --}}
+<!-- resources/views/hr/employees/index.blade.php -->
+<!-- public/js/app.js-->
+<!-- Not yet done for CSS -->
+
 @extends('layouts.app')
 
 @section('content')
@@ -17,17 +21,16 @@
 
         @yield('hr-content')
     </div>
-
-    <script>
-        // Auto-dismiss flash messages after 3 seconds
-        setTimeout(() => {
-            const flash = document.getElementById('flash-message');
-            if (flash) {
-                flash.classList.remove('show');
-                flash.classList.add('fade');
-                setTimeout(() => flash.remove(), 500); // wait for fade animation
-            }
-        }, 3000);
-    </script>
 @endsection
 
+
+@push('styles')
+<link rel="stylesheet" href="">
+@endpush
+@push('scripts')
+<script src="{{ asset('js/app.js') }}"></script>
+@endpush
+
+
+
+{{-- DONE CHECKING--}}

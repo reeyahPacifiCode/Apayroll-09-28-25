@@ -1,3 +1,8 @@
+{{-- PATH DIRECTORY --}}
+<!-- resources/views/employees/edit.blade.php -->
+<!-- public/js/hr-employees-edit.js-->
+<!-- public/css/hr.css -->
+
 @extends('layouts.hr')
 
 @section('page-title', 'Edit Employee')
@@ -188,77 +193,14 @@
         </div>
     </form>
 </div>
-
-<script>
-function previewImage(input){
-    const preview = document.getElementById('preview');
-    const file = input.files[0];
-    if(file){
-        const reader = new FileReader();
-        reader.onload = e=>{
-            preview.src = e.target.result;
-            preview.style.display='block';
-        };
-        reader.readAsDataURL(file);
-    }
-}
-
-document.getElementById('birthdate').addEventListener('change',function(){
-    const birthdate = new Date(this.value);
-    const today = new Date();
-    let age = today.getFullYear() - birthdate.getFullYear();
-    const m = today.getMonth() - birthdate.getMonth();
-    if(m<0||(m===0 && today.getDate()<birthdate.getDate())) age--;
-    if(age<18){
-        alert('Employee must be 18 years or older.');
-        this.value = '';
-        document.getElementById('age').value = '';
-    } else {
-        document.getElementById('age').value = age;
-    }
-});
-
-// Optional: Prevent letters in number fields
-document.querySelectorAll('input[pattern="\\d*"]').forEach(input=>{
-    input.addEventListener('input',()=>{ input.value = input.value.replace(/\D/g,''); });
-});
-</script>
-
-{{-- Styling --}}
-<style>
-.form-label.small{
-    font-size: 0.8rem;
-    margin-bottom: 2px;
-    font-weight: 500;
-    color: black;
-}
-.form-control-sm, .form-select-sm{
-    height: 32px;
-    font-size: 0.875rem;
-    border: 1px solid #cacccd;   /* width + style + color */
-    border-radius: 4px;             /* Slightly rounded corners */
-    color: black;                   /* Text black */
-}
-.form-control-sm::placeholder{
-    color: black;
-}
-.profile-picture-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-}
-.profile-preview {
-    width: 160px;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 4px;
-}
-/* Styling for readonly fields to indicate they're not editable */
-.form-control-sm[readonly] {
-    background-color: #f8f9fa;
-    opacity: 0.8;
-}
-</style>
-
 @endsection
+
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/hr.css') }}">
+@endpush
+@push('scripts')
+<script src="{{ asset('js/hr-employees-edit.js') }}"></script>
+@endpush
+
+
+{{-- DONE CHECKING --}}

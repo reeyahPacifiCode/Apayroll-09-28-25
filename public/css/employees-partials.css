@@ -1,0 +1,212 @@
+/* ---PATH DIRECTORY: public/css/employee-partials.css*/
+/* This is the CSS for all file bale.php inside partials folder */
+
+
+
+/*--------------------------------------------employee-partials-file */
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .card {
+        width: 210mm;   /* A4 width */
+        height: 74mm;   /* 1/4 of 297mm */
+        page-break-after: always;
+    }
+}
+
+
+/*-------------------------------------------employee-partials-schedule */
+/* MAIN ADD SCHEDULE CALENDAR - Full size no scroll */
+#mini-calendar {
+    width: 100% !important;
+    height: 100px !important;
+    display: block !important;
+}
+
+#mini-calendar .fc {
+    width: 100% !important;
+    height: 100px !important;
+}
+
+#mini-calendar .fc-view-harness {
+    height: 100px !important;
+}
+
+#mini-calendar .fc-daygrid-day-frame {
+    padding: 4px !important;
+    min-height: 30px !important;
+}
+
+/* VIEW MODE - Single calendar (centered) */
+.single-calendar-container {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.single-calendar {
+    width: 100% !important;
+    height: 400px !important;
+    display: block !important;
+}
+
+.single-calendar .fc {
+    width: 100% !important;
+    height: 400px !important;
+}
+
+.single-calendar .fc-view-harness {
+    height: 350px !important;
+}
+
+.single-calendar .fc-daygrid-day-frame {
+    padding: 6px !important;
+    min-height: 45px !important;
+}
+
+.single-calendar .fc-daygrid-day-number {
+    font-size: 14px !important;
+}
+
+.single-calendar .fc-col-header-cell {
+    padding: 8px !important;
+    font-size: 13px !important;
+}
+
+.single-calendar .fc-toolbar-title {
+    font-size: 18px !important;
+}
+
+/* VIEW MODE - Multiple calendars side by side */
+.multi-calendar {
+    width: 100% !important;
+    height: 300px !important;
+    display: block !important;
+}
+
+.multi-calendar .fc {
+    width: 100% !important;
+    height: 300px !important;
+}
+
+.multi-calendar .fc-view-harness {
+    height: 250px !important;
+}
+
+.multi-calendar .fc-daygrid-day-frame {
+    padding: 4px !important;
+    min-height: 30px !important;
+}
+
+.multi-calendar .fc-daygrid-day-number {
+    font-size: 12px !important;
+}
+
+.multi-calendar .fc-col-header-cell {
+    padding: 4px !important;
+    font-size: 11px !important;
+}
+
+.multi-calendar .fc-toolbar-title {
+    font-size: 14px !important;
+}
+
+.multi-calendar .fc-toolbar {
+    margin-bottom: 0.2em !important;
+}
+
+/* Container for side-by-side calendars */
+.month-calendar-small {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 10px;
+    background: #f8f9fa;
+    width: 300px;
+    flex-shrink: 0;
+}
+
+#view-calendars-container {
+    max-height: none;
+    overflow: visible;
+}
+
+/* Remove internal scrollbars from calendars */
+.multi-calendar .fc-scroller,
+.single-calendar .fc-scroller,
+#mini-calendar .fc-scroller {
+    overflow: hidden !important;
+}
+
+.multi-calendar .fc-daygrid-body,
+.single-calendar .fc-daygrid-body,
+#mini-calendar .fc-daygrid-body {
+    overflow: hidden !important;
+}
+
+/* General calendar styling */
+.fc-scrollgrid {
+    border: 1px solid #ddd !important;
+}
+
+.fc-daygrid-day-frame {
+    padding: 2px !important;
+    min-height: 25px !important;
+}
+
+.fc-day.restday {
+    background-color: #B71C1C !important;
+    color: #721c24 !important;
+}
+
+.fc-day.working {
+    background-color: #0D47A1 !important;
+    color: #084298 !important;
+}
+
+.fc-day:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.fc-daygrid-day.taken {
+    background: #eee;
+}
+
+#view-legend {
+    text-align: center;
+}
+
+#view-legend .badge {
+    margin: 0 5px;
+    font-size: 0.8em;
+}
+
+
+
+/*-------------------------------------------employee-partials-personal-info */
+.table th {
+    background: #f8f9fa;        /* light gray bg sa labels */
+    width: 20%;                 /* mas maliit space para labels */
+    padding: 4px 8px;           /* mas dikit label at value */
+    text-align: left;
+    vertical-align: middle;
+    white-space: nowrap;        /* para hindi bumaliktad ang text */
+}
+
+.table td {
+    padding: 4px 10px;          /* mas maliit padding */
+    vertical-align: middle;
+}
+
+.table td + th {
+    border-left: 2px solid #dee2e6; /* separator sa gitna ng pares */
+}
+
+.table th, .table td {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+
+/*DONE CHECKING ALL */

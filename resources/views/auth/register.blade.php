@@ -1,3 +1,8 @@
+{{-- PATH DIRECTORY --}}
+<!-- resources/views/auth/register.blade.php -->
+<!-- public/js/auth-layout.js-->
+<!-- Not yet done for CSS -->
+
 @extends('layouts.auth-layout')
 
 @section('title', 'Registration')
@@ -89,42 +94,18 @@
             <button type="submit" class="btn btn-primary custom-btn">Register</button>
         </div>
     </form>
-
-    <script>
-        document.getElementById('showPassword').addEventListener('change', function () {
-            const type = this.checked ? 'text' : 'password';
-            document.getElementById('password').type = type;
-            document.getElementById('confirm_password').type = type;
-        });
-
-        const password = document.getElementById('password');
-        const confirmPassword = document.getElementById('confirm_password');
-        const message = document.getElementById('passwordMessage');
-
-        function checkPasswords() {
-            if (!confirmPassword.value) {
-                message.textContent = "";
-                confirmPassword.classList.remove("is-valid", "is-invalid");
-                return;
-            }
-
-            if (password.value === confirmPassword.value) {
-                message.textContent = "Passwords match ✅";
-                message.classList.remove("text-danger");
-                message.classList.add("text-success");
-                confirmPassword.classList.add("is-valid");
-                confirmPassword.classList.remove("is-invalid");
-            } else {
-                message.textContent = "Passwords do not match ❌";
-                message.classList.remove("text-success");
-                message.classList.add("text-danger");
-                confirmPassword.classList.add("is-invalid");
-                confirmPassword.classList.remove("is-valid");
-            }
-        }
-
-        password.addEventListener('input', checkPasswords);
-        confirmPassword.addEventListener('input', checkPasswords);
-        
-    </script>
 @endsection
+
+
+
+@push('styles')
+<link rel="stylesheet" href="">
+@endpush
+@push('scripts')
+<script src="{{ asset('js/auth-layout.js') }}"></script>
+@endpush
+
+
+
+
+{{-- DONE CHECKING --}}

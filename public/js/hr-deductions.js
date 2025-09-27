@@ -1,3 +1,5 @@
+//-- DEDUCTIONS
+
 // Late and Absences
 document.addEventListener('DOMContentLoaded', function() {
     const daysInput = document.getElementById('daysInput');
@@ -7,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const perHourSpan = document.getElementById('perHour');
     const perMinuteSpan = document.getElementById('perMinute');
     const dailyResultContainer = document.getElementById('dailyResultContainer');
-    
+
     // Mode elements
     const viewMode = document.getElementById('viewMode');
     const editMode = document.getElementById('editMode');
@@ -16,13 +18,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const viewDays = document.getElementById('viewDays');
     const editButton = document.getElementById('editButton');
     const cancelEditButton = document.getElementById('cancelEditButton');
-    
+
     // ✅ Get data from data attribute
     const modal = document.getElementById('lateAbsenceModal');
     const savedDaysValue = modal.getAttribute('data-saved-days');
     const hasSavedData = savedDaysValue !== '' && parseFloat(savedDaysValue) > 0;
     let originalDaysValue = daysInput.value;
-    
+
     function showViewMode() {
         viewMode.style.display = 'block';
         editMode.style.display = 'none';
@@ -30,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
         editModeButtons.style.display = 'none';
         viewDays.textContent = daysInput.value;
     }
-    
+
     function showEditMode() {
         viewMode.style.display = 'none';
         editMode.style.display = 'block';
@@ -39,19 +41,19 @@ document.addEventListener('DOMContentLoaded', function() {
         originalDaysValue = daysInput.value;
         updateSample();
     }
-    
+
     // Initialize modal based on saved data
     if (hasSavedData) {
         showViewMode();
     } else {
         showEditMode();
     }
-    
+
     // Edit button click
     editButton.addEventListener('click', function() {
         showEditMode();
     });
-    
+
     // Cancel edit button click
     cancelEditButton.addEventListener('click', function() {
         daysInput.value = originalDaysValue;
@@ -114,19 +116,19 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('SSS Form found!');
         console.log('Form action:', sssForm.action);
         console.log('Form method:', sssForm.method);
-        
+
         sssForm.addEventListener('submit', function(e) {
             console.log('Form is being submitted!');
             console.log('Action URL:', this.action);
             console.log('Method:', this.method);
-            
+
             // Check form data
             const formData = new FormData(this);
             console.log('Form data:');
             for (let [key, value] of formData.entries()) {
                 console.log(key, value);
             }
-            
+
             // Let the form submit normally (removed e.preventDefault())
         });
     } else {
@@ -159,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
             input.setAttribute('readonly', true);
             input.classList.add('bg-light');
         });
-        
+
         tableBody.querySelectorAll('.removeBracket').forEach(btn => btn.classList.remove('d-none'));
         addBtn.classList.remove('d-none');
 
@@ -211,11 +213,11 @@ document.addEventListener('DOMContentLoaded', function () {
         if (e.target.classList.contains('removeBracket')) {
             const row = e.target.closest('tr');
             const idInput = row.querySelector('input[name*="[id]"]');
-            
+
             if (idInput && idInput.value) {
                 // This is an existing record, delete from database
                 const bracketId = idInput.value;
-                
+
                 if (confirm('Are you sure you want to delete this SSS bracket?')) {
                     // Send DELETE request
                     fetch(`/sss/${bracketId}`, {
@@ -286,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const phicEmployerShare = document.getElementById('phicEmployerShare');
     const phicEmployeeShare = document.getElementById('phicEmployeeShare');
     const phicComputationNote = document.getElementById('phicComputationNote');
-    
+
     // PHIC Mode elements
     const phicViewMode = document.getElementById('phicViewMode');
     const phicEditMode = document.getElementById('phicEditMode');
@@ -297,22 +299,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const phicViewMax = document.getElementById('phicViewMax');
     const phicEditButton = document.getElementById('phicEditButton');
     const phicCancelEditButton = document.getElementById('phicCancelEditButton');
-    
+
     if (!phicRateInput) return; // Exit if PHIC elements don't exist on this page
-    
+
     // Get data from data attributes
     const phicModal = document.getElementById('phicModal');
     const savedRate = phicModal.getAttribute('data-saved-rate');
     const savedMin = phicModal.getAttribute('data-saved-min');
     const savedMax = phicModal.getAttribute('data-saved-max');
     const phicHasSavedData = savedRate !== '' && parseFloat(savedRate) > 0;
-    
+
     let phicOriginalValues = {
         rate: phicRateInput.value,
         min_salary: phicMinInput.value,
         max_salary: phicMaxInput.value
     };
-    
+
     function showPhicViewMode() {
         phicViewMode.style.display = 'block';
         phicEditMode.style.display = 'none';
@@ -322,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function() {
         phicViewMin.textContent = '₱' + parseFloat(phicMinInput.value).toLocaleString('en-US', {minimumFractionDigits: 2});
         phicViewMax.textContent = '₱' + parseFloat(phicMaxInput.value).toLocaleString('en-US', {minimumFractionDigits: 2});
     }
-    
+
     function showPhicEditMode() {
         phicViewMode.style.display = 'none';
         phicEditMode.style.display = 'block';
@@ -335,21 +337,21 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         updatePhicSample();
     }
-    
+
     // Initialize PHIC modal based on saved data
     if (phicHasSavedData) {
         showPhicViewMode();
     } else {
         showPhicEditMode();
     }
-    
+
     // PHIC Edit button click
     if (phicEditButton) {
         phicEditButton.addEventListener('click', function() {
             showPhicEditMode();
         });
     }
-    
+
     // PHIC Cancel edit button click
     if (phicCancelEditButton) {
         phicCancelEditButton.addEventListener('click', function() {
@@ -373,10 +375,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const sampleSalary = parseFloat(phicSampleSalary.value) || 0;
         const employerPercent = parseFloat(phicEmployerPercent.value) || 0;
         const employeePercent = parseFloat(phicEmployeePercent.value) || 0;
-    
+
         let totalPremium = 0;
         let computationNote = '';
-    
+
         if (sampleSalary <= minSalary && minSalary > 0) {
             totalPremium = (minSalary * rate) / 100;
             computationNote = `Salary ≤ ₱${minSalary.toLocaleString()}, using minimum salary for computation.`;
@@ -387,16 +389,16 @@ document.addEventListener('DOMContentLoaded', function() {
             totalPremium = (sampleSalary * rate) / 100;
             computationNote = `₱${sampleSalary.toLocaleString()} × ${rate}% = ₱${totalPremium.toFixed(2)}`;
         }
-    
+
         const employerShare = (totalPremium * employerPercent) / 100;
         const employeeShare = (totalPremium * employeePercent) / 100;
-    
+
         phicTotalPremium.textContent = totalPremium.toFixed(2);
         phicEmployerShare.textContent = employerShare.toFixed(2);
         phicEmployeeShare.textContent = employeeShare.toFixed(2);
         phicComputationNote.textContent = computationNote;
     }
-    
+
 
     // Add event listeners for PHIC inputs
     if (phicRateInput) phicRateInput.addEventListener('input', updatePhicSample);
@@ -552,3 +554,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+// DONE CHECKING

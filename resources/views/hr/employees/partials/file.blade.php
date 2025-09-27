@@ -1,3 +1,8 @@
+{{-- PATH DIRECTORY --}}
+<!-- resources/views/employees/partials/file.blade.php -->
+<!-- Javascript is in here too because the for each not working to the js.file page, consult first in backend dev :) -->
+<!-- public/css/employees-partials.css -->
+
 @extends('layouts.app')
 
 @section('content')
@@ -38,10 +43,15 @@
 </div>
 @endsection
 
+
+
+
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/employees-partials.css') }}">
+@endpush
 @push('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.9/index.global.min.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
     const calendarEl = document.getElementById('print-calendar');
 
     const calendar = new FullCalendar.Calendar(calendarEl, {
@@ -64,18 +74,9 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.render();
 });
 </script>
-
-<style>
-@media print {
-    body {
-        margin: 0;
-        padding: 0;
-    }
-    .card {
-        width: 210mm;   /* A4 width */
-        height: 74mm;   /* 1/4 of 297mm */
-        page-break-after: always;
-    }
-}
-</style>
+<script src="{{ asset('js/vendors/fullcalendar.min.js') }}"></script>
 @endpush
+
+
+
+{{-- DONE CHECKING --}}

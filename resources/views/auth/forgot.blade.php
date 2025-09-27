@@ -1,3 +1,9 @@
+{{-- PATH DIRECTORY --}}
+<!-- resources/views/auth/forgot.blade.php -->
+<!-- public/js/auth-layout.js-->
+<!-- Not yet done for CSS -->
+
+
 @extends('layouts.auth-layout')
 
 @section('title', 'Forgot Password')
@@ -78,14 +84,15 @@
             <button type="submit" class="btn btn-primary custom-btn">Reset</button>
         </div>
     </form>
-
-    <script>
-        function togglePassword() {
-            const pw1 = document.getElementById("password");
-            const pw2 = document.getElementById("confirm_password");
-            const type = pw1.type === "password" ? "text" : "password";
-            pw1.type = type;
-            if (pw2) pw2.type = type;
-        }
-    </script>
 @endsection
+
+@push('styles')
+<link rel="stylesheet" href="">
+@endpush
+@push('scripts')
+<script src="{{ asset('js/auth-layout.js') }}"></script>
+@endpush
+
+
+
+{{-- DONE CHECKING --}}

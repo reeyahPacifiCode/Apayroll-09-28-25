@@ -1,3 +1,9 @@
+{{-- PATH DIRECTORY --}}
+<!-- resources/views/employees/partials/personal-info.blade.php -->
+<!-- Not yet for js-->
+<!-- public/css/employees-partials.css -->
+
+
 <!-- Personal Info Tab -->
 <div class="tab-pane fade show active" id="personal" role="tabpanel">
     <div class="row">
@@ -99,8 +105,8 @@
         <!-- Right Column (Photo) -->
         <div class="col-md-4 text-center">
             @if ($employee->photo)
-                <img src="{{ asset('storage/' . $employee->photo) }}" 
-                     alt="Profile Photo" 
+                <img src="{{ asset('storage/' . $employee->photo) }}"
+                     alt="Profile Photo"
                      class="img-thumbnail mb-2"
                      style="width:150px; height:150px; object-fit:cover;">
             @else
@@ -116,27 +122,13 @@
     </div>
 </div>
 
-<style>
-.table th {
-    background: #f8f9fa;        /* light gray bg sa labels */
-    width: 20%;                 /* mas maliit space para labels */
-    padding: 4px 8px;           /* mas dikit label at value */
-    text-align: left;
-    vertical-align: middle;
-    white-space: nowrap;        /* para hindi bumaliktad ang text */
-}
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/employees-partials.css')}}">
+@endpush
+@push('scripts')
+<script src="">
+</script>
+@endpush
 
-.table td {
-    padding: 4px 10px;          /* mas maliit padding */
-    vertical-align: middle;
-}
 
-.table td + th {
-    border-left: 2px solid #dee2e6; /* separator sa gitna ng pares */
-}
-
-.table th, .table td {
-    font-size: 14px;
-    line-height: 1.4;
-}
-</style>
+{{-- DONE CHECKING --}}

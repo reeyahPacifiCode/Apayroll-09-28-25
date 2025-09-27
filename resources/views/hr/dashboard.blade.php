@@ -1,3 +1,8 @@
+{{-- PATH DIRECTORY --}}
+<!-- resources/views/hr/dashboard.blade.php -->
+<!-- Not yet done for js  -->
+<!-- Not yet done for CSS -->
+
 @extends('layouts.app')
 
 @section('content')
@@ -22,3 +27,10 @@
 </div>
 </div>
 @endsection
+
+@push('styles')
+<link rel="stylesheet" href="">
+@endpush
+@push('scripts')
+<script src=""></script>
+@endpush

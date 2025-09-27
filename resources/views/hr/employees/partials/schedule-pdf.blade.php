@@ -1,3 +1,9 @@
+{{-- PATH DIRECTORY --}}
+<!-- resources/views/employees/partials/schedule-pdf.blade.php -->
+<!-- Not yet for js-->
+<!-- Not yet for css-->
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +28,7 @@
             <p><strong>Cutoff:</strong> {{ $file->cutoff?->label ?? 'No cutoff' }} - {{ $file->cutoff?->year ?? '' }}</p>
             <p><strong>Time In:</strong> {{ \Carbon\Carbon::parse($file->time_in)->format('h:i A') }}</p>
             <p><strong>Time Out:</strong> {{ \Carbon\Carbon::parse($file->time_out)->format('h:i A') }}</p>
-            <p><strong>Legend:</strong> <span style="background:#cfe2ff;padding:2px 5px;">Blue</span> - Working days, 
+            <p><strong>Legend:</strong> <span style="background:#cfe2ff;padding:2px 5px;">Blue</span> - Working days,
                 <span style="background:#f8d7da;padding:2px 5px;">Red</span> - Restday
             </p>
         </div>
@@ -85,3 +91,15 @@
     </div>
 </body>
 </html>
+
+
+@push('styles')
+<link rel="stylesheet" href="{{ '' }}">
+@endpush
+@push('scripts')
+<script src="">
+</script>
+@endpush
+
+
+{{-- DONE CHECKING --}}

@@ -1,3 +1,5 @@
+/*--This CSS file is for header, navgation,sidebar and footer--*/
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -43,7 +45,24 @@ body {
     align-items: center;
 }
 
-/* Top Bar */
+.page-header {
+    position: sticky;
+    top: 20px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 5px 15px;
+    font-weight: bold;
+    font-size: 22px;
+    border-bottom: 2px solid #b3b8bf;
+    z-index: 100;
+}
+
+.page-body {
+    padding: 15px;
+}
+
+/* ---TOP BAR --- */
 .topbar {
     position: fixed;
     top: 60px;
@@ -145,7 +164,6 @@ body {
     display: none;
 }
 
-
 /* When sidebar is collapsed, shift main content left */
 .sidebar.collapsed ~ .main-content {
     margin-left: 5px;
@@ -169,20 +187,6 @@ body {
 }
 
 
-.page-header {
-    position: sticky;
-    top: 20px;
-    left: 0;
-    right: 0;
-    background: #fff;
-    padding: 5px 15px;
-    font-weight: bold;
-    font-size: 22px;
-    border-bottom: 2px solid #b3b8bf;
-    z-index: 100;
-}
 
-.page-body {
-    padding: 15px;
-}
 
+/* DONE CHECKING */

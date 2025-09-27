@@ -1,3 +1,9 @@
+{{-- PATH DIRECTORY --}}
+<!-- resources/views/auth/login.blade.php -->
+<!-- public/js/auth-layout.js-->
+<!-- Not yet done for CSS -->
+
+
 @extends('layouts.auth-layout')
 
 @section('title', 'Login')
@@ -12,19 +18,19 @@
     @if($errors->any())
         <div class="alert alert-danger">{{ $errors->first() }}</div>
     @endif
-    
+
     <div class="form-wrapper">
         <form action="/login" method="POST">
             @csrf
             <div class="mb-3">
                 <label class="form-label">Email</label>
-                <input type="email" name="email" class="form-control" placeholder="Email"
+                <input type="email" class="form-control" name="email"  placeholder="Enter your email"
                 autocomplete="new-email" readonly onfocus="this.removeAttribute('readonly');" required>
             </div>
 
             <div class="mb-2">
                 <label class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" placeholder="Password"
+                <input type="password" class="form-control"  name="password" placeholder="Enter your password"
                 autocomplete="new-password" required>
             </div>
 
@@ -45,17 +51,13 @@
     </div>
 @endsection
 
-@push('scripts')
-<script>
-    document.getElementById('showPassword').addEventListener('change', function () {
-        const passwordInput = document.querySelector('input[name="password"]');
-        passwordInput.type = this.checked ? 'text' : 'password';
-    });
-
-    window.addEventListener('load', function () {
-        document.querySelectorAll('input[type="text"], input[type="email"]').forEach(input => {
-            input.value = '';
-        });
-    });
-</script>
+@push('styles')
+<link rel="stylesheet" href="">
 @endpush
+@push('scripts')
+<script src="{{ asset('js/auth-layout.js') }}"></script>
+@endpush
+
+
+
+{{-- DONE CHECKING --}}

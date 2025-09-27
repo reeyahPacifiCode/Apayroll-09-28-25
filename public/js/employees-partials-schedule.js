@@ -1,10 +1,12 @@
+
+
 document.addEventListener('DOMContentLoaded', function () {
     // ---- ADD SCHEDULE CALENDAR ----
     const calendarEl   = document.getElementById('mini-calendar');
     const weeksSelect  = document.getElementById('weeks');
     const maxDaysLabel = document.getElementById('max-days-label');
     let activeType = 'working';
-    
+
     const takenDates = window.employeeData?.takenDates || [];
 
     // Toggle Working/Rest buttons
@@ -77,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 dayCellDidMount: function(arg) {
                     const dateStr = arg.date.toISOString().slice(0,10);
-                
+
                     // Mark taken dates (existing behavior)
                     if (takenDates.includes(dateStr)) {
                         arg.el.classList.add('taken');
@@ -85,14 +87,14 @@ document.addEventListener('DOMContentLoaded', function () {
                         arg.el.style.opacity = '0.5';
                         arg.el.title = 'Already scheduled';
                     }
-                
+
                     // Get the date number element
                     const dayNumberEl = arg.el.querySelector('.fc-daygrid-day-number');
                     if (!dayNumberEl) return;
-                
+
                     // Make number bold
                     dayNumberEl.style.fontWeight = 'bold';
-                
+
                     // Apply color based on highlight
                     if (arg.el.classList.contains('working') || arg.el.classList.contains('restday')) {
                         dayNumberEl.style.color = '#FFFFFF'; // white for highlighted dates
@@ -116,10 +118,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
 
                     if (cell.classList.contains('working') || cell.classList.contains('restday')) {
-                        cell.classList.remove('working','restday'); 
-                        cell.style.backgroundColor=''; 
+                        cell.classList.remove('working','restday');
+                        cell.style.backgroundColor='';
                         cell.style.color='';
-                        updateDaysJson(); 
+                        updateDaysJson();
                         return;
                     }
                     if (takenDates.includes(info.dateStr)) {
@@ -134,26 +136,26 @@ document.addEventListener('DOMContentLoaded', function () {
                         return;
                     }
 
-                    if(activeType==='working'){ 
-                        cell.classList.add('working'); 
+                    if(activeType==='working'){
+                        cell.classList.add('working');
                         cell.style.backgroundColor='#0D47A1';
                         cell.style.color='#084298';
-                    } else { 
-                        cell.classList.add('restday'); 
+                    } else {
+                        cell.classList.add('restday');
                         cell.style.backgroundColor='#B71C1C';
                         cell.style.color='#721c24';
                     }
                     updateDaysJson();
                 }
             });
-            
+
             calendar.render();
-            
+
             // Multiple attempts to ensure proper rendering
             setTimeout(() => {
                 calendar.updateSize();
             }, 100);
-            
+
             setTimeout(() => {
                 calendar.updateSize();
                 applyScheduleStyles();
@@ -169,9 +171,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
                 document.getElementById('days-json').value=JSON.stringify(days);
             }
-            
+
         }, 100); // Delay initial calendar creation
-        
+
         getMaxDays();
         weeksSelect.addEventListener('change', getMaxDays);
     }
@@ -228,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function () {
         container.innerHTML = '';
 
         const monthKeys = Object.keys(months);
-        
+
         if (monthKeys.length === 1) {
             // Single calendar - center it
             const monthContainer = document.createElement('div');
@@ -250,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             monthKeys.forEach((monthKey, index) => {
                 const monthData = months[monthKey];
-                
+
                 const monthContainer = document.createElement('div');
                 monthContainer.className = 'month-calendar-small me-3 mb-3';
                 monthContainer.innerHTML = `
@@ -327,3 +329,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 });
+
+
+
+// NOT YET DONE FOR CHECKING

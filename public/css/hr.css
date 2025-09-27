@@ -1,0 +1,105 @@
+
+/*-------------------------------------------CALENDAR MANAGEMENT */
+    .selected-holiday {
+        background-color: #032260 !important;
+        color: white;
+    }
+    .selected-special {
+        background-color: #add8e6 !important;
+    }
+    .calendar-table th,
+    .calendar-table td {
+        font-size: 0.8rem;
+        padding: 4px;
+        height: 50px;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .calendar-table {
+    table-layout: fixed;   /* ✅ para equal widths */
+    width: 100%;
+    }
+
+    .calendar-table th,
+    .calendar-table td {
+        width: 14.28%;         /* ✅ 100% / 7 days */
+        text-align: center;
+        vertical-align: middle;
+        font-size: 0.8rem;
+        height: 60px;          /* pwede mong baguhin depende sa gusto mong taas */
+        padding: 4px;
+    }
+
+
+/*-------------------------------------------CALENDAR MANAGEMENT */
+/* Naka-inline, make it transfer */
+
+
+/*-------------------------------------------EMPLOYEE-EDIT */
+.form-label.small{
+    font-size: 0.8rem;
+    margin-bottom: 2px;
+    font-weight: 500;
+    color: black;
+}
+.form-control-sm, .form-select-sm{
+    height: 32px;
+    font-size: 0.875rem;
+    border: 1px solid #cacccd;   /* width + style + color */
+    border-radius: 4px;             /* Slightly rounded corners */
+    color: black;                   /* Text black */
+}
+.form-control-sm::placeholder{
+    color: black;
+}
+.profile-picture-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.profile-preview {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+/* Styling for readonly fields to indicate they're not editable */
+.form-control-sm[readonly] {
+    background-color: #f8f9fa;
+    opacity: 0.8;
+}
+
+/*-------------------------------------------EMPLOYEE-CREATE */
+.form-label.small{
+    font-size: 0.8rem;
+    margin-bottom: 2px;
+    font-weight: 500;
+    color: black;
+}
+.form-control-sm, .form-select-sm{
+    height: 32px;
+    font-size: 0.875rem;
+    border: 1px solid #cacccd;   /* width + style + color */
+    border-radius: 4px;             /* Slightly rounded corners */
+    color: black;                   /* Text black */
+}
+.form-control-sm::placeholder{
+    color: black;
+}
+.profile-picture-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.profile-preview {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+
+/*  */

@@ -1,4 +1,9 @@
-{{-- resources/views/hr/premium/index.blade.php --}}
+{{-- PATH DIRECTORY --}}
+<!-- resources/views/hr/premium/index.blade.php -->
+<!-- public/js/hr-premium.js -->
+<!-- Not yet done for CSS -->
+
+
 @extends('layouts.hr')
 
 @section('page-title', 'Premium Setup')
@@ -10,7 +15,7 @@
             <div class="card-header">
                 <small class="text-muted">Configure premium pay rates for work scenarios</small>
             </div>
-            
+
             <div class="card-body">
                 {{-- Alerts --}}
                 @if(session('success'))
@@ -29,7 +34,7 @@
                 <form id="premiumForm" action="{{ route('premium.update') }}" method="POST">
                     @csrf
                     @method('PUT')
-                    
+
                     <div class="accordion" id="premiumAccordion">
                         @foreach($categories as $category)
                             <div class="accordion-item mb-3">
@@ -74,14 +79,14 @@
                                                                 <td>{{ $typeName }}</td>
                                                                 <td>
                                                                     <div class="input-group">
-                                                                        <input type="number" 
-                                                                            class="form-control d-none premium-input" 
-                                                                            name="premium_types[{{ $category->id }}][{{ $premiumType?->id }}][rate]" 
-                                                                            value="{{ $premiumType?->regular_rate ?? 0 }}" 
+                                                                        <input type="number"
+                                                                            class="form-control d-none premium-input"
+                                                                            name="premium_types[{{ $category->id }}][{{ $premiumType?->id }}][rate]"
+                                                                            value="{{ $premiumType?->regular_rate ?? 0 }}"
                                                                             step="0.01" min="0" max="999.99">
-                                                                        <input type="text" 
-                                                                            class="form-control premium-display" 
-                                                                            value="{{ $premiumType?->regular_rate ?? 0 }} %" 
+                                                                        <input type="text"
+                                                                            class="form-control premium-display"
+                                                                            value="{{ $premiumType?->regular_rate ?? 0 }} %"
                                                                             readonly>
                                                                     </div>
                                                                 </td>
@@ -103,14 +108,14 @@
                                                                 <td>{{ $premiumType->name }}</td>
                                                                 <td>
                                                                     <div class="input-group">
-                                                                        <input type="number" 
-                                                                            class="form-control d-none premium-input" 
-                                                                            name="premium_types[{{ $category->id }}][{{ $premiumType->id }}][rate]" 
-                                                                            value="{{ $premiumType->regular_rate }}" 
+                                                                        <input type="number"
+                                                                            class="form-control d-none premium-input"
+                                                                            name="premium_types[{{ $category->id }}][{{ $premiumType->id }}][rate]"
+                                                                            value="{{ $premiumType->regular_rate }}"
                                                                             step="0.01" min="0" max="999.99">
-                                                                        <input type="text" 
-                                                                            class="form-control premium-display" 
-                                                                            value="{{ $premiumType->regular_rate }} %" 
+                                                                        <input type="text"
+                                                                            class="form-control premium-display"
+                                                                            value="{{ $premiumType->regular_rate }} %"
                                                                             readonly>
                                                                     </div>
                                                                 </td>
@@ -133,7 +138,7 @@
                             </div>
                         @endforeach
                     </div>
-                    
+
                     <div class="d-flex justify-content-end mt-4">
                         <button type="button" class="btn btn-outline-secondary me-2" onclick="location.reload()">
                             <i class="bx bx-reset me-1"></i> Reset
@@ -147,27 +152,14 @@
         </div>
     </div>
 </div>
-
-<script>
-function toggleEdit(btn) {
-    const row = btn.closest('tr');
-    row.querySelector('.premium-display').classList.add('d-none');
-    row.querySelector('.premium-input').classList.remove('d-none');
-    btn.classList.add('d-none');
-    row.querySelector('.save-btn').classList.remove('d-none');
-}
-
-function toggleSave(btn) {
-    const row = btn.closest('tr');
-    const input = row.querySelector('.premium-input');
-    const display = row.querySelector('.premium-display');
-
-    display.value = input.value + " %";
-    input.classList.add('d-none');
-    display.classList.remove('d-none');
-
-    btn.classList.add('d-none');
-    row.querySelector('.edit-btn').classList.remove('d-none');
-}
-</script>
 @endsection
+
+@push('styles')
+<link rel="stylesheet" href="">
+@endpush
+@push('scripts')
+<script src="{{ asset('js/hr-premium.js') }}"></script>
+@endpush
+
+
+{{-- DONE CHECKING --}}

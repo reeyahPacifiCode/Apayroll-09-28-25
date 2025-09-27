@@ -1,4 +1,9 @@
-<!-- resources/views/employees/schedule.blade.php -->
+{{-- PATH DIRECTORY --}}
+<!-- resources/views/employees/partials/employee-schedule.blade.php -->
+<!-- vague yet for js; have 2 css-->
+<!-- vague yet for css; have 2 css-->
+
+
 <div class="tab-pane fade" id="schedule" role="tabpanel">
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
@@ -63,10 +68,10 @@
                         <p><strong>Schedule:</strong> <span id="view-schedule"></span></p>
                         <p><strong>Time In:</strong> <span id="view-time-in"></span></p>
                         <p><strong>Time Out:</strong> <span id="view-time-out"></span></p>
-                        
+
                         <!-- Legend -->
                         <div id="view-legend" class="mt-3">
-                            <span class="badge bg-primary">Working Day (Blue)</span> 
+                            <span class="badge bg-primary">Working Day (Blue)</span>
                             <span class="badge bg-danger">Rest Day (Red)</span>
                         </div>
                     </div>
@@ -141,11 +146,180 @@
     </div>
 </div>
 
+
+
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/employees-partials-schedule.css') }}">
+<style>
+/* MAIN ADD SCHEDULE CALENDAR - Full size no scroll */
+#mini-calendar {
+    width: 100% !important;
+    height: 100px !important;
+    display: block !important;
+}
+
+#mini-calendar .fc {
+    width: 100% !important;
+    height: 100px !important;
+}
+
+#mini-calendar .fc-view-harness {
+    height: 100px !important;
+}
+
+#mini-calendar .fc-daygrid-day-frame {
+    padding: 4px !important;
+    min-height: 30px !important;
+}
+
+/* VIEW MODE - Single calendar (centered) */
+.single-calendar-container {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.single-calendar {
+    width: 100% !important;
+    height: 400px !important;
+    display: block !important;
+}
+
+.single-calendar .fc {
+    width: 100% !important;
+    height: 400px !important;
+}
+
+.single-calendar .fc-view-harness {
+    height: 350px !important;
+}
+
+.single-calendar .fc-daygrid-day-frame {
+    padding: 6px !important;
+    min-height: 45px !important;
+}
+
+.single-calendar .fc-daygrid-day-number {
+    font-size: 14px !important;
+}
+
+.single-calendar .fc-col-header-cell {
+    padding: 8px !important;
+    font-size: 13px !important;
+}
+
+.single-calendar .fc-toolbar-title {
+    font-size: 18px !important;
+}
+
+/* VIEW MODE - Multiple calendars side by side */
+.multi-calendar {
+    width: 100% !important;
+    height: 300px !important;
+    display: block !important;
+}
+
+.multi-calendar .fc {
+    width: 100% !important;
+    height: 300px !important;
+}
+
+.multi-calendar .fc-view-harness {
+    height: 250px !important;
+}
+
+.multi-calendar .fc-daygrid-day-frame {
+    padding: 4px !important;
+    min-height: 30px !important;
+}
+
+.multi-calendar .fc-daygrid-day-number {
+    font-size: 12px !important;
+}
+
+.multi-calendar .fc-col-header-cell {
+    padding: 4px !important;
+    font-size: 11px !important;
+}
+
+.multi-calendar .fc-toolbar-title {
+    font-size: 14px !important;
+}
+
+.multi-calendar .fc-toolbar {
+    margin-bottom: 0.2em !important;
+}
+
+/* Container for side-by-side calendars */
+.month-calendar-small {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    padding: 10px;
+    background: #f8f9fa;
+    width: 300px;
+    flex-shrink: 0;
+}
+
+#view-calendars-container {
+    max-height: none;
+    overflow: visible;
+}
+
+/* Remove internal scrollbars from calendars */
+.multi-calendar .fc-scroller,
+.single-calendar .fc-scroller,
+#mini-calendar .fc-scroller {
+    overflow: hidden !important;
+}
+
+.multi-calendar .fc-daygrid-body,
+.single-calendar .fc-daygrid-body,
+#mini-calendar .fc-daygrid-body {
+    overflow: hidden !important;
+}
+
+/* General calendar styling */
+.fc-scrollgrid {
+    border: 1px solid #ddd !important;
+}
+
+.fc-daygrid-day-frame {
+    padding: 2px !important;
+    min-height: 25px !important;
+}
+
+.fc-day.restday {
+    background-color: #B71C1C !important;
+    color: #721c24 !important;
+}
+
+.fc-day.working {
+    background-color: #0D47A1 !important;
+    color: #084298 !important;
+}
+
+.fc-day:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.fc-daygrid-day.taken {
+    background: #eee;
+}
+
+#view-legend {
+    text-align: center;
+}
+
+#view-legend .badge {
+    margin: 0 5px;
+    font-size: 0.8em;
+}
+</style>
+@endpush
+@endpush
 @push('scripts')
 <!-- FullCalendar -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.9/index.min.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.9/index.global.min.js"></script>
-
+<script src="{{ asset('js/vendors/fullcalendar.min.js') }}"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // ---- ADD SCHEDULE CALENDAR ----
@@ -253,10 +427,10 @@
                         }
 
                         if (cell.classList.contains('working') || cell.classList.contains('restday')) {
-                            cell.classList.remove('working','restday'); 
-                            cell.style.backgroundColor=''; 
+                            cell.classList.remove('working','restday');
+                            cell.style.backgroundColor='';
                             cell.style.color='';
-                            updateDaysJson(); 
+                            updateDaysJson();
                             return;
                         }
                         if (takenDates.includes(info.dateStr)) {
@@ -271,26 +445,26 @@
                             return;
                         }
 
-                        if(activeType==='working'){ 
-                            cell.classList.add('working'); 
+                        if(activeType==='working'){
+                            cell.classList.add('working');
                             cell.style.backgroundColor='#0D47A1';
                             cell.style.color='#084298';
-                        } else { 
-                            cell.classList.add('restday'); 
+                        } else {
+                            cell.classList.add('restday');
                             cell.style.backgroundColor='#B71C1C';
                             cell.style.color='#721c24';
                         }
                         updateDaysJson();
                     }
                 });
-                
+
                 calendar.render();
-                
+
                 // Multiple attempts to ensure proper rendering
                 setTimeout(() => {
                     calendar.updateSize();
                 }, 100);
-                
+
                 setTimeout(() => {
                     calendar.updateSize();
                     applyScheduleStyles();
@@ -306,9 +480,9 @@
                     });
                     document.getElementById('days-json').value=JSON.stringify(days);
                 }
-                
+
             }, 100); // Delay initial calendar creation
-            
+
             getMaxDays();
             weeksSelect.addEventListener('change', getMaxDays);
         }
@@ -365,7 +539,7 @@
             container.innerHTML = '';
 
             const monthKeys = Object.keys(months);
-            
+
             if (monthKeys.length === 1) {
                 // Single calendar - center it
                 const monthContainer = document.createElement('div');
@@ -387,7 +561,7 @@
 
                 monthKeys.forEach((monthKey, index) => {
                     const monthData = months[monthKey];
-                    
+
                     const monthContainer = document.createElement('div');
                     monthContainer.className = 'month-calendar-small me-3 mb-3';
                     monthContainer.innerHTML = `
@@ -463,171 +637,6 @@
 
     });
 </script>
-
-<style>
-/* MAIN ADD SCHEDULE CALENDAR - Full size no scroll */
-#mini-calendar { 
-    width: 100% !important;
-    height: 100px !important;
-    display: block !important;
-}
-
-#mini-calendar .fc { 
-    width: 100% !important; 
-    height: 100px !important;
-}
-
-#mini-calendar .fc-view-harness { 
-    height: 100px !important; 
-}
-
-#mini-calendar .fc-daygrid-day-frame { 
-    padding: 4px !important; 
-    min-height: 30px !important;
-}
-
-/* VIEW MODE - Single calendar (centered) */
-.single-calendar-container {
-    width: 500px;
-    margin: 0 auto;
-}
-
-.single-calendar { 
-    width: 100% !important;
-    height: 400px !important;
-    display: block !important;
-}
-
-.single-calendar .fc { 
-    width: 100% !important; 
-    height: 400px !important;
-}
-
-.single-calendar .fc-view-harness { 
-    height: 350px !important; 
-}
-
-.single-calendar .fc-daygrid-day-frame { 
-    padding: 6px !important; 
-    min-height: 45px !important;
-}
-
-.single-calendar .fc-daygrid-day-number {
-    font-size: 14px !important;
-}
-
-.single-calendar .fc-col-header-cell {
-    padding: 8px !important;
-    font-size: 13px !important;
-}
-
-.single-calendar .fc-toolbar-title {
-    font-size: 18px !important;
-}
-
-/* VIEW MODE - Multiple calendars side by side */
-.multi-calendar { 
-    width: 100% !important;
-    height: 300px !important;
-    display: block !important;
-}
-
-.multi-calendar .fc { 
-    width: 100% !important; 
-    height: 300px !important;
-}
-
-.multi-calendar .fc-view-harness { 
-    height: 250px !important; 
-}
-
-.multi-calendar .fc-daygrid-day-frame { 
-    padding: 4px !important; 
-    min-height: 30px !important;
-}
-
-.multi-calendar .fc-daygrid-day-number {
-    font-size: 12px !important;
-}
-
-.multi-calendar .fc-col-header-cell {
-    padding: 4px !important;
-    font-size: 11px !important;
-}
-
-.multi-calendar .fc-toolbar-title {
-    font-size: 14px !important;
-}
-
-.multi-calendar .fc-toolbar {
-    margin-bottom: 0.2em !important;
-}
-
-/* Container for side-by-side calendars */
-.month-calendar-small {
-    border: 1px solid #dee2e6;
-    border-radius: 0.25rem;
-    padding: 10px;
-    background: #f8f9fa;
-    width: 300px;
-    flex-shrink: 0;
-}
-
-#view-calendars-container {
-    max-height: none;
-    overflow: visible;
-}
-
-/* Remove internal scrollbars from calendars */
-.multi-calendar .fc-scroller,
-.single-calendar .fc-scroller,
-#mini-calendar .fc-scroller {
-    overflow: hidden !important;
-}
-
-.multi-calendar .fc-daygrid-body,
-.single-calendar .fc-daygrid-body,
-#mini-calendar .fc-daygrid-body {
-    overflow: hidden !important;
-}
-
-/* General calendar styling */
-.fc-scrollgrid {
-    border: 1px solid #ddd !important;
-}
-
-.fc-daygrid-day-frame { 
-    padding: 2px !important; 
-    min-height: 25px !important;
-}
-
-.fc-day.restday { 
-    background-color: #B71C1C !important; 
-    color: #721c24 !important; 
-}
-
-.fc-day.working { 
-    background-color: #0D47A1 !important; 
-    color: #084298 !important; 
-}
-
-.fc-day:hover { 
-    cursor: pointer; 
-    opacity: 0.8; 
-}
-
-.fc-daygrid-day.taken { 
-    background: #eee; 
-}
-
-#view-legend {
-    text-align: center;
-}
-
-#view-legend .badge {
-    margin: 0 5px;
-    font-size: 0.8em;
-}
-</style>
 @endpush
 
+{{-- NOT YET DONE FOR CHECKING , IT STILL VAGUE --}}

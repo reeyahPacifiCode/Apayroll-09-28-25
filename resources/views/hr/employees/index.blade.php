@@ -1,3 +1,8 @@
+{{-- PATH DIRECTORY --}}
+<!-- resources/views/hr/employees/index.blade.php -->
+<!-- Not yet done for js -->
+<!-- Not yet done for CSS -->
+
 @extends('layouts.hr')
 
 {{-- Fixed header title --}}
@@ -20,12 +25,12 @@
             </select>
 
             {{-- Search Input --}}
-            <input type="text" 
-                   name="search" 
-                   value="{{ request('search') }}" 
-                   placeholder="Search..." 
-                   class="form-control form-control-sm" 
-                   style="width: 230px;" 
+            <input type="text"
+                   name="search"
+                   value="{{ request('search') }}"
+                   placeholder="Search..."
+                   class="form-control form-control-sm"
+                   style="width: 230px;"
                    onkeydown="if(event.key === 'Enter'){ this.form.submit(); }">
         </form>
 
@@ -80,3 +85,14 @@
 
 </div>
 @endsection
+
+
+@push('styles')
+<link rel="stylesheet" href="">
+@endpush
+@push('scripts')
+<script src="{{ asset('') }}"></script>
+@endpush
+
+
+{{-- DONE CHECKING --}}

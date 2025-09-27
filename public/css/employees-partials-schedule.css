@@ -1,23 +1,25 @@
+/* employee-partials-schedule*/
+
 /* ============================= */
 /* MAIN ADD SCHEDULE CALENDAR    */
 /* ============================= */
-#mini-calendar { 
+#mini-calendar {
     width: 100% !important;
     height: auto !important;  /* 🔧 ADJUST HERE: dati fixed 380px, gawin mo auto or mas mataas */
     display: block !important;
 }
 
-#mini-calendar .fc { 
-    width: 100% !important; 
+#mini-calendar .fc {
+    width: 100% !important;
     height: auto !important;  /* 🔧 ADJUST HERE: auto height */
 }
 
-#mini-calendar .fc-view-harness { 
+#mini-calendar .fc-view-harness {
     min-height: 400px !important;  /* 🔧 ADJUST HERE: dagdagan para magkasya hanggang 6 weeks */
 }
 
-#mini-calendar .fc-daygrid-day-frame { 
-    padding: 2px !important;   
+#mini-calendar .fc-daygrid-day-frame {
+    padding: 2px !important;
     min-height: 40px !important;  /* 🔧 ADJUST HERE: bawat date box */
 }
 
@@ -47,23 +49,23 @@
     margin: 0 auto;
 }
 
-.single-calendar { 
+.single-calendar {
     width: 100% !important;
     height: auto !important;   /* 🔧 ADJUST HERE: auto para hindi maputol last week */
     display: block !important;
 }
 
-.single-calendar .fc { 
-    width: 100% !important; 
+.single-calendar .fc {
+    width: 100% !important;
     height: auto !important;   /* 🔧 ADJUST HERE */
 }
 
-.single-calendar .fc-view-harness { 
+.single-calendar .fc-view-harness {
     min-height: 500px !important;  /* 🔧 ADJUST HERE: taasan to kapag 6 weeks */
 }
 
-.single-calendar .fc-daygrid-day-frame { 
-    padding: 6px !important; 
+.single-calendar .fc-daygrid-day-frame {
+    padding: 6px !important;
     min-height: 55px !important;   /* 🔧 ADJUST HERE: bawat cell height */
 }
 
@@ -83,23 +85,23 @@
 /* ============================= */
 /* VIEW MODE - Multiple calendars*/
 /* ============================= */
-.multi-calendar { 
+.multi-calendar {
     width: 100% !important;
     height: auto !important;   /* 🔧 ADJUST HERE */
     display: block !important;
 }
 
-.multi-calendar .fc { 
-    width: 100% !important; 
+.multi-calendar .fc {
+    width: 100% !important;
     height: auto !important;   /* 🔧 ADJUST HERE */
 }
 
-.multi-calendar .fc-view-harness { 
+.multi-calendar .fc-view-harness {
     min-height: 320px !important;  /* 🔧 ADJUST HERE */
 }
 
-.multi-calendar .fc-daygrid-day-frame { 
-    padding: 2px !important; 
+.multi-calendar .fc-daygrid-day-frame {
+    padding: 2px !important;
     min-height: 20px !important;   /* 🔧 ADJUST HERE */
 }
 
@@ -164,29 +166,29 @@
 }
 
 /* 🔧 ADJUST HERE: default row height ng bawat araw */
-.fc-daygrid-day-frame { 
-    padding: 2px !important; 
+.fc-daygrid-day-frame {
+    padding: 2px !important;
     min-height: 40px !important;  /* dagdagan kung gusto mo mas malaki cell */
 }
 
 /* Custom day colors */
-.fc-day.restday { 
-    background-color: #B71C1C !important; 
-    color: #721c24 !important; 
+.fc-day.restday {
+    background-color: #B71C1C !important;
+    color: #721c24 !important;
 }
 
-.fc-day.working { 
-    background-color: #0D47A1 !important; 
-    color: #084298 !important; 
+.fc-day.working {
+    background-color: #0D47A1 !important;
+    color: #084298 !important;
 }
 
-.fc-day:hover { 
-    cursor: pointer; 
-    opacity: 0.8; 
+.fc-day:hover {
+    cursor: pointer;
+    opacity: 0.8;
 }
 
-.fc-daygrid-day.taken { 
-    background: #eee; 
+.fc-daygrid-day.taken {
+    background: #eee;
 }
 
 #view-legend {
